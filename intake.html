@@ -207,7 +207,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
           </div>
           <div class="field">
             <label for="make">Make *</label>
-            <select id="make" name="make" class="vehicle-select" required id="make" name="make">
+            <select id="make" name="make" class="vehicle-select" required onchange="updateModels()">
               <option value="" disabled selected>Select Make</option>
               <option value="Acura">Acura</option><option value="Audi">Audi</option><option value="BMW">BMW</option><option value="Buick">Buick</option><option value="Cadillac">Cadillac</option><option value="Chevrolet">Chevrolet</option><option value="Chrysler">Chrysler</option><option value="Dodge">Dodge</option><option value="Ferrari">Ferrari</option><option value="Fiat">Fiat</option><option value="Ford">Ford</option><option value="Genesis">Genesis</option><option value="GMC">GMC</option><option value="Honda">Honda</option><option value="Hyundai">Hyundai</option><option value="Infiniti">Infiniti</option><option value="Jaguar">Jaguar</option><option value="Jeep">Jeep</option><option value="Kia">Kia</option><option value="Lamborghini">Lamborghini</option><option value="Land Rover">Land Rover</option><option value="Lexus">Lexus</option><option value="Lincoln">Lincoln</option><option value="Maserati">Maserati</option><option value="Mazda">Mazda</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="MINI">MINI</option><option value="Mitsubishi">Mitsubishi</option><option value="Nissan">Nissan</option><option value="Porsche">Porsche</option><option value="RAM">RAM</option><option value="Rolls-Royce">Rolls-Royce</option><option value="Subaru">Subaru</option><option value="Tesla">Tesla</option><option value="Toyota">Toyota</option><option value="Volkswagen">Volkswagen</option><option value="Volvo">Volvo</option><option value="Other">Other</option>
             </select>
@@ -230,7 +230,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
           </div>
           <div class="field">
             <label for="mileage">Mileage *</label>
-            <input type="number" id="mileage" name="mileage" placeholder="72,000" required/>
+            <input type="text" id="mileage" name="mileage" placeholder="72,000" inputmode="numeric" required/>
           </div>
         </div>
         <div class="row row-2">
@@ -239,8 +239,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
             <input type="text" id="plate" name="plate" placeholder="ABC-1234"/>
           </div>
           <div class="field">
-            <label for="vin">VIN (last 8 digits)</label>
-            <input type="text" id="vin" name="vin" placeholder="WBA8E9G5" maxlength="17"/>
+            <label for="vin">VIN Number</label>
+            <input type="text" id="vin" name="vin" placeholder="WBA8E9G50NU000001" maxlength="17"/>
           </div>
         </div>
         <div class="field" style="margin-top:4px;">
@@ -378,364 +378,106 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
 </footer>
 
 <script>
-document.getElementById('sig_date').valueAsDate = new Date();
-
-// Set minimum appointment date to tomorrow
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-const apptInput = document.getElementById('appt_date');
-if (apptInput) {
-  apptInput.min = tomorrow.toISOString().split('T')[0];
-}
-
-// ═══════════════════════════════════════
-// VEHICLE DATABASE: Year → Make → Models
-// ═══════════════════════════════════════
+// ═══════════════════════════════
+// VEHICLE DATABASE year ranges
+// ═══════════════════════════════
 const VEHICLE_DB = {
-  "Acura": {
-    "ILX": [2013,2026], "TLX": [2015,2026], "RDX": [2007,2026],
-    "MDX": [2001,2026], "NSX": [2017,2026], "Integra": [2023,2026]
-  },
-  "Audi": {
-    "A3": [2006,2026], "A4": [1996,2026], "A5": [2008,2026],
-    "A6": [1995,2026], "A7": [2012,2026], "A8": [1997,2026],
-    "Q3": [2015,2026], "Q5": [2009,2026], "Q7": [2007,2026],
-    "Q8": [2019,2026], "TT": [2000,2026], "R8": [2008,2026],
-    "S3": [2015,2026], "S4": [1992,2026], "S5": [2008,2026],
-    "S6": [1995,2026], "S7": [2013,2026], "S8": [1997,2026],
-    "RS3": [2017,2026], "RS4": [2007,2026], "RS5": [2010,2026],
-    "RS6": [2021,2026], "RS7": [2014,2026], "RS Q8": [2020,2026],
-    "e-tron": [2019,2026], "e-tron GT": [2022,2026], "Q4 e-tron": [2022,2026],
-    "SQ5": [2014,2026], "SQ7": [2020,2026], "SQ8": [2020,2026]
-  },
-  "BMW": {
-    "1 Series": [2008,2026], "2 Series": [2014,2026],
-    "3 Series": [1983,2026], "4 Series": [2014,2026],
-    "5 Series": [1982,2026], "6 Series": [2004,2024],
-    "7 Series": [1978,2026], "8 Series": [2019,2026],
-    "X1": [2013,2026], "X2": [2018,2026], "X3": [2004,2026],
-    "X4": [2015,2026], "X5": [2000,2026], "X6": [2008,2026],
-    "X7": [2019,2026], "Z4": [2003,2026],
-    "M2": [2016,2026], "M3": [1987,2026], "M4": [2015,2026],
-    "M5": [1988,2026], "M8": [2020,2026], "X3 M": [2020,2026],
-    "X5 M": [2010,2026], "X6 M": [2010,2026],
-    "i3": [2014,2023], "i4": [2022,2026], "i5": [2024,2026],
-    "i7": [2023,2026], "iX": [2022,2026], "iX1": [2023,2026]
-  },
-  "Buick": {
-    "Enclave": [2008,2026], "Encore": [2013,2026], "Encore GX": [2020,2026],
-    "Envision": [2016,2026], "LaCrosse": [2005,2019]
-  },
-  "Cadillac": {
-    "CT4": [2020,2026], "CT5": [2020,2026], "Escalade": [1999,2026],
-    "XT4": [2019,2026], "XT5": [2017,2026], "XT6": [2020,2026],
-    "LYRIQ": [2023,2026]
-  },
-  "Chevrolet": {
-    "Silverado 1500": [1999,2026], "Silverado 2500": [1999,2026],
-    "Camaro": [1967,2024], "Corvette": [1953,2026],
-    "Equinox": [2005,2026], "Traverse": [2009,2026],
-    "Tahoe": [1995,2026], "Suburban": [1935,2026],
-    "Colorado": [2004,2026], "Blazer": [2019,2026],
-    "Trax": [2013,2026], "Trailblazer": [2021,2026],
-    "Bolt EV": [2017,2026], "Bolt EUV": [2022,2026]
-  },
-  "Chrysler": {
-    "300": [2005,2023], "Pacifica": [2017,2026], "Voyager": [2020,2022]
-  },
-  "Dodge": {
-    "Challenger": [2008,2023], "Charger": [2006,2026],
-    "Durango": [1998,2026], "Ram 1500": [1994,2012],
-    "Journey": [2009,2020]
-  },
-  "Ferrari": {
-    "Roma": [2020,2026], "Portofino": [2018,2023], "SF90": [2020,2026],
-    "F8": [2020,2022], "812": [2017,2026], "296 GTB": [2022,2026],
-    "Purosangue": [2023,2026]
-  },
-  "Ford": {
-    "F-150": [1975,2026], "F-250": [1999,2026], "F-350": [1999,2026],
-    "Mustang": [1965,2026], "Mustang Mach-E": [2021,2026],
-    "Explorer": [1991,2026], "Escape": [2001,2026],
-    "Edge": [2007,2024], "Expedition": [1997,2026],
-    "Bronco": [2021,2026], "Bronco Sport": [2021,2026],
-    "Maverick": [2022,2026], "Ranger": [1983,2026],
-    "EcoSport": [2018,2022], "Transit": [2015,2026],
-    "Transit Connect": [2010,2023]
-  },
-  "Genesis": {
-    "G70": [2019,2026], "G80": [2017,2026], "G90": [2017,2026],
-    "GV70": [2022,2026], "GV80": [2021,2026]
-  },
-  "GMC": {
-    "Sierra 1500": [1999,2026], "Sierra 2500": [1999,2026],
-    "Acadia": [2007,2026], "Terrain": [2010,2026],
-    "Yukon": [1992,2026], "Yukon XL": [1992,2026],
-    "Canyon": [2004,2026], "Envoy": [1998,2009]
-  },
-  "Honda": {
-    "Civic": [1973,2026], "Accord": [1976,2026],
-    "CR-V": [1997,2026], "HR-V": [2016,2026],
-    "Pilot": [2003,2026], "Odyssey": [1995,2026],
-    "Ridgeline": [2006,2026], "Passport": [2019,2026],
-    "Fit": [2007,2020], "Insight": [2000,2022],
-    "Prologue": [2024,2026]
-  },
-  "Hyundai": {
-    "Elantra": [1991,2026], "Sonata": [1989,2026],
-    "Tucson": [2005,2026], "Santa Fe": [2001,2026],
-    "Palisade": [2020,2026], "Kona": [2018,2026],
-    "Ioniq 5": [2022,2026], "Ioniq 6": [2023,2026],
-    "Venue": [2020,2026]
-  },
-  "Infiniti": {
-    "Q50": [2014,2026], "Q60": [2017,2024], "QX50": [2014,2026],
-    "QX55": [2021,2026], "QX60": [2013,2026], "QX80": [2011,2026]
-  },
-  "Jaguar": {
-    "XE": [2017,2024], "XF": [2009,2026], "XJ": [1968,2019],
-    "F-Type": [2014,2026], "F-Pace": [2017,2026],
-    "E-Pace": [2018,2026], "I-Pace": [2019,2026]
-  },
-  "Jeep": {
-    "Wrangler": [1987,2026], "Grand Cherokee": [1993,2026],
-    "Cherokee": [1984,2024], "Compass": [2007,2026],
-    "Gladiator": [2020,2026], "Renegade": [2015,2026],
-    "Grand Wagoneer": [2022,2026]
-  },
-  "Kia": {
-    "Forte": [2010,2026], "K5": [2021,2026], "Stinger": [2018,2026],
-    "Sportage": [1995,2026], "Sorento": [2003,2026],
-    "Telluride": [2020,2026], "Carnival": [2022,2026],
-    "EV6": [2022,2026], "Niro": [2017,2026]
-  },
-  "Lamborghini": {
-    "Huracan": [2015,2026], "Urus": [2019,2026],
-    "Revuelto": [2024,2026]
-  },
-  "Land Rover": {
-    "Range Rover": [1970,2026], "Range Rover Sport": [2006,2026],
-    "Range Rover Evoque": [2012,2026], "Range Rover Velar": [2018,2026],
-    "Discovery": [1989,2026], "Discovery Sport": [2015,2026],
-    "Defender": [2020,2026]
-  },
-  "Lexus": {
-    "IS": [2001,2026], "ES": [1990,2026], "GS": [1993,2020],
-    "LS": [1990,2026], "RC": [2015,2026], "LC": [2018,2026],
-    "NX": [2015,2026], "RX": [1999,2026], "GX": [2004,2026],
-    "LX": [1996,2026], "UX": [2019,2026], "RZ": [2023,2026]
-  },
-  "Lincoln": {
-    "Aviator": [2020,2026], "Corsair": [2020,2026],
-    "Nautilus": [2019,2026], "Navigator": [1998,2026]
-  },
-  "Maserati": {
-    "Ghibli": [2014,2024], "Quattroporte": [2004,2026],
-    "Levante": [2017,2026], "GranTurismo": [2008,2026],
-    "MC20": [2022,2026], "Grecale": [2023,2026]
-  },
-  "Mazda": {
-    "Mazda3": [2004,2026], "Mazda6": [2003,2021],
-    "CX-3": [2016,2022], "CX-30": [2020,2026],
-    "CX-5": [2013,2026], "CX-50": [2023,2026],
-    "CX-9": [2007,2023], "CX-90": [2024,2026],
-    "MX-5 Miata": [1990,2026]
-  },
-  "Mercedes-Benz": {
-    "A-Class": [2019,2026], "C-Class": [1994,2026],
-    "E-Class": [1994,2026], "S-Class": [1972,2026],
-    "CLA": [2014,2026], "CLS": [2005,2026],
-    "GLA": [2015,2026], "GLB": [2020,2026],
-    "GLC": [2016,2026], "GLE": [2000,2026],
-    "GLS": [2007,2026], "G-Class": [2002,2026],
-    "AMG GT": [2016,2026], "EQS": [2022,2026],
-    "EQE": [2023,2026], "EQB": [2022,2026],
-    "C43 AMG": [2023,2026], "C63 AMG": [2008,2026],
-    "E63 AMG": [2007,2026], "S63 AMG": [2007,2026]
-  },
-  "MINI": {
-    "Cooper": [2002,2026], "Cooper S": [2002,2026],
-    "Countryman": [2011,2026], "Clubman": [2008,2024],
-    "Convertible": [2005,2026], "Paceman": [2013,2016],
-    "Electric": [2020,2026]
-  },
-  "Mitsubishi": {
-    "Outlander": [2003,2026], "Eclipse Cross": [2018,2026],
-    "Galant": [1985,2012], "Lancer": [2002,2017]
-  },
-  "Nissan": {
-    "Altima": [1993,2026], "Maxima": [1981,2023],
-    "Sentra": [1982,2026], "Versa": [2007,2026],
-    "Rogue": [2008,2026], "Murano": [2003,2026],
-    "Pathfinder": [1986,2026], "Frontier": [1998,2026],
-    "Titan": [2004,2026], "Armada": [2004,2026],
-    "370Z": [2009,2021], "400Z": [2023,2026], "GT-R": [2009,2023],
-    "Leaf": [2011,2026], "Ariya": [2023,2026]
-  },
-  "Porsche": {
-    "911": [1965,2026], "Cayenne": [2003,2026],
-    "Macan": [2015,2026], "Panamera": [2010,2026],
-    "Taycan": [2020,2026], "718 Boxster": [2017,2026],
-    "718 Cayman": [2017,2026]
-  },
-  "RAM": {
-    "1500": [2009,2026], "2500": [2010,2026],
-    "3500": [2010,2026], "ProMaster": [2014,2026]
-  },
-  "Rolls-Royce": {
-    "Ghost": [2010,2026], "Phantom": [2004,2026],
-    "Wraith": [2014,2023], "Dawn": [2016,2023],
-    "Cullinan": [2019,2026], "Spectre": [2024,2026]
-  },
-  "Subaru": {
-    "Impreza": [1993,2026], "WRX": [2015,2026],
-    "Legacy": [1990,2023], "Outback": [1995,2026],
-    "Forester": [1998,2026], "Crosstrek": [2013,2026],
-    "Ascent": [2019,2026], "BRZ": [2013,2026],
-    "Solterra": [2023,2026]
-  },
-  "Tesla": {
-    "Model 3": [2017,2026], "Model S": [2012,2026],
-    "Model X": [2016,2026], "Model Y": [2020,2026],
-    "Cybertruck": [2024,2026]
-  },
-  "Toyota": {
-    "Camry": [1983,2026], "Corolla": [1968,2026],
-    "RAV4": [1996,2026], "Highlander": [2001,2026],
-    "Tacoma": [1995,2026], "Tundra": [2000,2026],
-    "4Runner": [1984,2026], "Sienna": [1998,2026],
-    "Prius": [2001,2026], "Supra": [2020,2026],
-    "86": [2017,2026], "Venza": [2009,2015],
-    "Sequoia": [2001,2026], "Land Cruiser": [1958,2024],
-    "bZ4X": [2023,2026], "Crown": [2023,2026],
-    "GR Corolla": [2023,2026]
-  },
-  "Volkswagen": {
-    "Golf": [1975,2026], "GTI": [1983,2026],
-    "Golf R": [2012,2026], "Jetta": [1980,2026],
-    "Passat": [1974,2022], "Tiguan": [2009,2026],
-    "Atlas": [2018,2026], "Atlas Cross Sport": [2020,2026],
-    "Arteon": [2019,2023], "ID.4": [2021,2026],
-    "Taos": [2022,2026]
-  },
-  "Volvo": {
-    "S60": [2001,2026], "S90": [2017,2026],
-    "V60": [2015,2026], "V90": [2017,2026],
-    "XC40": [2019,2026], "XC60": [2009,2026],
-    "XC90": [2003,2026], "C40 Recharge": [2022,2026],
-    "EX30": [2024,2026], "EX90": [2024,2026]
-  }
+  "Acura":       {"ILX":[2013,2026],"TLX":[2015,2026],"RDX":[2007,2026],"MDX":[2001,2026],"NSX":[2017,2026],"Integra":[2023,2026]},
+  "Audi":        {"A3":[2006,2026],"A4":[1996,2026],"A5":[2008,2026],"A6":[1995,2026],"A7":[2012,2026],"A8":[1997,2026],"Q3":[2015,2026],"Q4 e-tron":[2022,2026],"Q5":[2009,2026],"Q7":[2007,2026],"Q8":[2019,2026],"TT":[2000,2026],"R8":[2008,2026],"S3":[2015,2026],"S4":[1992,2026],"S5":[2008,2026],"S6":[1995,2026],"S7":[2013,2026],"S8":[1997,2026],"RS3":[2017,2026],"RS4":[2007,2026],"RS5":[2010,2026],"RS6":[2021,2026],"RS7":[2014,2026],"SQ5":[2014,2026],"SQ7":[2020,2026],"SQ8":[2020,2026],"e-tron":[2019,2026],"e-tron GT":[2022,2026],"RS Q8":[2020,2026]},
+  "BMW":         {"1 Series":[2008,2026],"2 Series":[2014,2026],"3 Series":[1983,2026],"4 Series":[2014,2026],"5 Series":[1982,2026],"6 Series":[2004,2024],"7 Series":[1978,2026],"8 Series":[2019,2026],"X1":[2013,2026],"X2":[2018,2026],"X3":[2004,2026],"X4":[2015,2026],"X5":[2000,2026],"X6":[2008,2026],"X7":[2019,2026],"Z4":[2003,2026],"M2":[2016,2026],"M3":[1987,2026],"M4":[2015,2026],"M5":[1988,2026],"M8":[2020,2026],"X3 M":[2020,2026],"X5 M":[2010,2026],"X6 M":[2010,2026],"i3":[2014,2023],"i4":[2022,2026],"i5":[2024,2026],"i7":[2023,2026],"iX":[2022,2026],"iX1":[2023,2026]},
+  "Buick":       {"Enclave":[2008,2026],"Encore":[2013,2026],"Encore GX":[2020,2026],"Envision":[2016,2026],"LaCrosse":[2005,2019]},
+  "Cadillac":    {"CT4":[2020,2026],"CT5":[2020,2026],"Escalade":[1999,2026],"XT4":[2019,2026],"XT5":[2017,2026],"XT6":[2020,2026],"LYRIQ":[2023,2026]},
+  "Chevrolet":   {"Silverado 1500":[1999,2026],"Silverado 2500":[1999,2026],"Camaro":[1967,2024],"Corvette":[1953,2026],"Equinox":[2005,2026],"Traverse":[2009,2026],"Tahoe":[1995,2026],"Suburban":[1935,2026],"Colorado":[2004,2026],"Blazer":[2019,2026],"Trax":[2013,2026],"Trailblazer":[2021,2026],"Bolt EV":[2017,2026],"Bolt EUV":[2022,2026]},
+  "Chrysler":    {"300":[2005,2023],"Pacifica":[2017,2026],"Voyager":[2020,2022]},
+  "Dodge":       {"Challenger":[2008,2023],"Charger":[2006,2026],"Durango":[1998,2026],"Journey":[2009,2020]},
+  "Ferrari":     {"Roma":[2020,2026],"Portofino":[2018,2023],"SF90":[2020,2026],"296 GTB":[2022,2026],"812 Superfast":[2017,2022],"812 GTS":[2020,2026],"Purosangue":[2023,2026]},
+  "Ford":        {"F-150":[1975,2026],"F-250":[1999,2026],"F-350":[1999,2026],"Mustang":[1965,2026],"Mustang Mach-E":[2021,2026],"Explorer":[1991,2026],"Escape":[2001,2026],"Edge":[2007,2024],"Expedition":[1997,2026],"Bronco":[2021,2026],"Bronco Sport":[2021,2026],"Maverick":[2022,2026],"Ranger":[1983,2026],"EcoSport":[2018,2022]},
+  "Genesis":     {"G70":[2019,2026],"G80":[2017,2026],"G90":[2017,2026],"GV70":[2022,2026],"GV80":[2021,2026]},
+  "GMC":         {"Sierra 1500":[1999,2026],"Sierra 2500":[1999,2026],"Acadia":[2007,2026],"Terrain":[2010,2026],"Yukon":[1992,2026],"Yukon XL":[1992,2026],"Canyon":[2004,2026]},
+  "Honda":       {"Civic":[1973,2026],"Accord":[1976,2026],"CR-V":[1997,2026],"HR-V":[2016,2026],"Pilot":[2003,2026],"Odyssey":[1995,2026],"Ridgeline":[2006,2026],"Passport":[2019,2026],"Fit":[2007,2020],"Prologue":[2024,2026]},
+  "Hyundai":     {"Elantra":[1991,2026],"Sonata":[1989,2026],"Tucson":[2005,2026],"Santa Fe":[2001,2026],"Palisade":[2020,2026],"Kona":[2018,2026],"Ioniq 5":[2022,2026],"Ioniq 6":[2023,2026],"Venue":[2020,2026]},
+  "Infiniti":    {"Q50":[2014,2026],"Q60":[2017,2024],"QX50":[2014,2026],"QX55":[2021,2026],"QX60":[2013,2026],"QX80":[2011,2026]},
+  "Jaguar":      {"XE":[2017,2024],"XF":[2009,2026],"XJ":[1968,2019],"F-Type":[2014,2026],"F-Pace":[2017,2026],"E-Pace":[2018,2026],"I-Pace":[2019,2026]},
+  "Jeep":        {"Wrangler":[1987,2026],"Grand Cherokee":[1993,2026],"Cherokee":[1984,2024],"Compass":[2007,2026],"Gladiator":[2020,2026],"Renegade":[2015,2026],"Grand Wagoneer":[2022,2026]},
+  "Kia":         {"Forte":[2010,2026],"K5":[2021,2026],"Stinger":[2018,2026],"Sportage":[1995,2026],"Sorento":[2003,2026],"Telluride":[2020,2026],"Carnival":[2022,2026],"EV6":[2022,2026],"Niro":[2017,2026]},
+  "Lamborghini": {"Huracan":[2015,2026],"Urus":[2019,2026],"Revuelto":[2024,2026]},
+  "Land Rover":  {"Range Rover":[1970,2026],"Range Rover Sport":[2006,2026],"Range Rover Evoque":[2012,2026],"Range Rover Velar":[2018,2026],"Discovery":[1989,2026],"Discovery Sport":[2015,2026],"Defender":[2020,2026]},
+  "Lexus":       {"IS":[2001,2026],"ES":[1990,2026],"GS":[1993,2020],"LS":[1990,2026],"RC":[2015,2026],"LC":[2018,2026],"NX":[2015,2026],"RX":[1999,2026],"GX":[2004,2026],"LX":[1996,2026],"UX":[2019,2026],"RZ":[2023,2026]},
+  "Lincoln":     {"Aviator":[2020,2026],"Corsair":[2020,2026],"Nautilus":[2019,2026],"Navigator":[1998,2026]},
+  "Maserati":    {"Ghibli":[2014,2024],"Quattroporte":[2004,2026],"Levante":[2017,2026],"GranTurismo":[2008,2026],"MC20":[2022,2026],"Grecale":[2023,2026]},
+  "Mazda":       {"Mazda3":[2004,2026],"Mazda6":[2003,2021],"CX-3":[2016,2022],"CX-30":[2020,2026],"CX-5":[2013,2026],"CX-50":[2023,2026],"CX-9":[2007,2023],"CX-90":[2024,2026],"MX-5 Miata":[1990,2026]},
+  "Mercedes-Benz":{"A-Class":[2019,2026],"C-Class":[1994,2026],"E-Class":[1994,2026],"S-Class":[1972,2026],"CLA":[2014,2026],"CLS":[2005,2026],"GLA":[2015,2026],"GLB":[2020,2026],"GLC":[2016,2026],"GLE":[2000,2026],"GLS":[2007,2026],"G-Class":[2002,2026],"AMG GT":[2016,2026],"EQS":[2022,2026],"EQE":[2023,2026],"EQB":[2022,2026],"C43 AMG":[2023,2026],"C63 AMG":[2008,2026],"E63 AMG":[2007,2026],"S63 AMG":[2007,2026]},
+  "MINI":        {"Cooper":[2002,2026],"Cooper S":[2002,2026],"Countryman":[2011,2026],"Clubman":[2008,2024],"Convertible":[2005,2026],"Electric":[2020,2026]},
+  "Mitsubishi":  {"Outlander":[2003,2026],"Eclipse Cross":[2018,2026],"Galant":[1985,2012],"Lancer":[2002,2017]},
+  "Nissan":      {"Altima":[1993,2026],"Maxima":[1981,2023],"Sentra":[1982,2026],"Versa":[2007,2026],"Rogue":[2008,2026],"Murano":[2003,2026],"Pathfinder":[1986,2026],"Frontier":[1998,2026],"Titan":[2004,2026],"Armada":[2004,2026],"370Z":[2009,2021],"400Z":[2023,2026],"GT-R":[2009,2023],"Leaf":[2011,2026],"Ariya":[2023,2026]},
+  "Porsche":     {"911":[1965,2026],"Cayenne":[2003,2026],"Macan":[2015,2026],"Panamera":[2010,2026],"Taycan":[2020,2026],"718 Boxster":[2017,2026],"718 Cayman":[2017,2026]},
+  "RAM":         {"1500":[2009,2026],"2500":[2010,2026],"3500":[2010,2026],"ProMaster":[2014,2026]},
+  "Rolls-Royce": {"Ghost":[2010,2026],"Phantom":[2004,2026],"Wraith":[2014,2023],"Dawn":[2016,2023],"Cullinan":[2019,2026],"Spectre":[2024,2026]},
+  "Subaru":      {"Impreza":[1993,2026],"WRX":[2015,2026],"Legacy":[1990,2023],"Outback":[1995,2026],"Forester":[1998,2026],"Crosstrek":[2013,2026],"Ascent":[2019,2026],"BRZ":[2013,2026],"Solterra":[2023,2026]},
+  "Tesla":       {"Model 3":[2017,2026],"Model S":[2012,2026],"Model X":[2016,2026],"Model Y":[2020,2026],"Cybertruck":[2024,2026]},
+  "Toyota":      {"Camry":[1983,2026],"Corolla":[1968,2026],"RAV4":[1996,2026],"Highlander":[2001,2026],"Tacoma":[1995,2026],"Tundra":[2000,2026],"4Runner":[1984,2026],"Sienna":[1998,2026],"Prius":[2001,2026],"Supra":[2020,2026],"86":[2017,2026],"Sequoia":[2001,2026],"Land Cruiser":[1958,2024],"bZ4X":[2023,2026],"Crown":[2023,2026],"GR Corolla":[2023,2026]},
+  "Volkswagen":  {"Golf":[1975,2026],"GTI":[1983,2026],"Golf R":[2012,2026],"Jetta":[1980,2026],"Passat":[1974,2022],"Tiguan":[2009,2026],"Atlas":[2018,2026],"Atlas Cross Sport":[2020,2026],"Arteon":[2019,2023],"ID.4":[2021,2026],"Taos":[2022,2026]},
+  "Volvo":       {"S60":[2001,2026],"S90":[2017,2026],"V60":[2015,2026],"V90":[2017,2026],"XC40":[2019,2026],"XC60":[2009,2026],"XC90":[2003,2026],"C40 Recharge":[2022,2026],"EX30":[2024,2026],"EX90":[2024,2026]}
 };
 
-function getAvailableMakes(year) {
-  if (!year) return Object.keys(VEHICLE_DB).sort();
-  const y = parseInt(year);
-  return Object.keys(VEHICLE_DB).filter(make =>
-    Object.values(VEHICLE_DB[make]).some(range => y >= range[0] && y <= range[1])
-  ).sort();
-}
-
-function getAvailableModels(make, year) {
-  if (!make || !VEHICLE_DB[make]) return [];
-  const y = parseInt(year);
-  return Object.entries(VEHICLE_DB[make])
-    .filter(([model, range]) => !y || (y >= range[0] && y <= range[1]))
-    .map(([model]) => model)
-    .sort();
-}
-
 function updateMakes() {
-  const year = document.getElementById('year').value;
+  const year = parseInt(document.getElementById('year').value) || 0;
   const makeEl = document.getElementById('make');
-  const currentMake = makeEl.value;
+  const prev = makeEl.value;
   makeEl.innerHTML = '<option value="" disabled selected>Select Make</option>';
-  getAvailableMakes(year).forEach(m => {
-    const opt = document.createElement('option');
-    opt.value = m; opt.textContent = m;
-    if (m === currentMake) opt.selected = true;
-    makeEl.appendChild(opt);
+  Object.keys(VEHICLE_DB).sort().forEach(make => {
+    const models = VEHICLE_DB[make];
+    const valid = !year || Object.values(models).some(r => year >= r[0] && year <= r[1]);
+    if (valid) {
+      const o = document.createElement('option');
+      o.value = make; o.textContent = make;
+      if (make === prev) o.selected = true;
+      makeEl.appendChild(o);
+    }
   });
-  // reset model
   updateModels();
 }
 
 function updateModels() {
-  const year = document.getElementById('year').value;
+  const year = parseInt(document.getElementById('year').value) || 0;
   const make = document.getElementById('make').value;
   const modelEl = document.getElementById('model');
   modelEl.innerHTML = '<option value="" disabled selected>Select Model</option>';
-  if (!make) return;
-  getAvailableModels(make, year).forEach(m => {
-    const opt = document.createElement('option');
-    opt.value = m; opt.textContent = m;
-    modelEl.appendChild(opt);
-  });
+  if (!make || !VEHICLE_DB[make]) return;
+  Object.entries(VEHICLE_DB[make])
+    .filter(([m, r]) => !year || (year >= r[0] && year <= r[1]))
+    .sort(([a],[b]) => a.localeCompare(b))
+    .forEach(([model]) => {
+      const o = document.createElement('option');
+      o.value = model; o.textContent = model;
+      modelEl.appendChild(o);
+    });
   const other = document.createElement('option');
   other.value = 'Other'; other.textContent = 'Other';
   modelEl.appendChild(other);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Set today's date on signature
+  document.getElementById('sig_date').valueAsDate = new Date();
+
+  // Set min appointment date to tomorrow
+  const apptInput = document.getElementById('appt_date');
+  if (apptInput) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    apptInput.min = tomorrow.toISOString().split('T')[0];
+  }
+
+  // Populate makes on load
+  updateMakes();
+
+  // Wire up events
   document.getElementById('year').addEventListener('change', updateMakes);
   document.getElementById('make').addEventListener('change', updateModels);
 });
 
-// Set minimum appointment date to tomorrow
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-const apptInput = document.getElementById('appt_date');
-if (apptInput) {
-  apptInput.min = tomorrow.toISOString().split('T')[0];
-}
-
-// Dynamic models by make
-const MODELS = {
-  'Audi': ['A3','A4','A5','A6','A7','A8','Q3','Q5','Q7','Q8','TT','R8','e-tron','S3','S4','S5','S6','RS3','RS4','RS5','RS6','RS7','Other'],
-  'BMW': ['1 Series','2 Series','3 Series','4 Series','5 Series','6 Series','7 Series','8 Series','X1','X2','X3','X4','X5','X6','X7','Z4','M2','M3','M4','M5','M8','i3','i4','i7','iX','Other'],
-  'Mercedes-Benz': ['A-Class','C-Class','E-Class','S-Class','GLA','GLB','GLC','GLE','GLS','G-Class','CLA','CLS','AMG GT','EQS','EQE','Other'],
-  'Volkswagen': ['Golf','GTI','Jetta','Passat','Tiguan','Atlas','Arteon','ID.4','Touareg','Other'],
-  'Porsche': ['911','Cayenne','Macan','Panamera','Taycan','718 Boxster','718 Cayman','Other'],
-  'Land Rover': ['Range Rover','Range Rover Sport','Range Rover Evoque','Discovery','Defender','Other'],
-  'Jaguar': ['XE','XF','XJ','F-Type','F-Pace','E-Pace','I-Pace','Other'],
-  'MINI': ['Cooper','Cooper S','Countryman','Clubman','Paceman','Convertible','Other'],
-  'Volvo': ['S60','S90','V60','V90','XC40','XC60','XC90','Other'],
-  'Toyota': ['Camry','Corolla','RAV4','Highlander','Tacoma','Tundra','4Runner','Sienna','Prius','Supra','Other'],
-  'Honda': ['Civic','Accord','CR-V','HR-V','Pilot','Odyssey','Ridgeline','Other'],
-  'Ford': ['F-150','Mustang','Explorer','Escape','Edge','Expedition','Bronco','Maverick','Other'],
-  'Chevrolet': ['Silverado','Camaro','Corvette','Equinox','Traverse','Tahoe','Suburban','Other'],
-  'Jeep': ['Wrangler','Grand Cherokee','Cherokee','Compass','Gladiator','Other'],
-};
-
-// Attach make change listener
-
-
-function updateModels(make) {
-  const sel = document.getElementById('model');
-  sel.innerHTML = '';
-  const models = MODELS[make] || ['Other'];
-  const def = document.createElement('option');
-  def.value = ''; def.disabled = true; def.selected = true;
-  def.textContent = 'Select Model';
-  sel.appendChild(def);
-  models.forEach(m => {
-    const opt = document.createElement('option');
-    opt.value = m; opt.textContent = m;
-    sel.appendChild(opt);
-  });
-  // If make not in list, allow text input
-  if (!MODELS[make]) {
-    sel.innerHTML = '<option value="Other">Other</option>';
-  }
-}
-
-// Set minimum appointment date to tomorrow
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-const apptInput = document.getElementById('appt_date');
-if (apptInput) {
-  apptInput.min = tomorrow.toISOString().split('T')[0];
-}
-
+// Form submit handler
 document.getElementById('roForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form = e.target;
