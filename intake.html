@@ -171,24 +171,24 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="row row-2">
           <div class="field">
             <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" placeholder="John Smith" required/>
+            <input type="text" id="name" name="Full Name" placeholder="John Smith" required/>
           </div>
           <div class="field">
             <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" placeholder="(253) 555-0000" required/>
+            <input type="tel" id="phone" name="Phone" placeholder="(253) 555-0000" required/>
           </div>
         </div>
         <div class="row row-2">
           <div class="field">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="john@email.com"/>
+            <input type="email" id="email" name="Email" placeholder="john@email.com"/>
           </div>
           <div class="field">
             <label>Preferred Contact</label>
             <div class="contact-row" style="padding-top:8px;">
-              <label class="check-item"><input type="checkbox" name="contact_pref" value="Call"/><span>Call</span></label>
-              <label class="check-item"><input type="checkbox" name="contact_pref" value="Text"/><span>Text</span></label>
-              <label class="check-item"><input type="checkbox" name="contact_pref" value="Email"/><span>Email</span></label>
+              <label class="check-item"><input type="checkbox" name="Preferred Contact" value="Call"/><span>Call</span></label>
+              <label class="check-item"><input type="checkbox" name="Preferred Contact" value="Text"/><span>Text</span></label>
+              <label class="check-item"><input type="checkbox" name="Preferred Contact" value="Email"/><span>Email</span></label>
             </div>
           </div>
         </div>
@@ -200,21 +200,21 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="row row-3">
           <div class="field">
             <label for="year">Year *</label>
-            <select id="year" name="year" class="vehicle-select" required onchange="updateMakes()">
+            <select id="year" name="Year" class="vehicle-select" required onchange="updateMakes()">
               <option value="" disabled selected>Select Year</option>
               <option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option>
             </select>
           </div>
           <div class="field">
             <label for="make">Make *</label>
-            <select id="make" name="make" class="vehicle-select" required onchange="updateModels()">
+            <select id="make" name="Make" class="vehicle-select" required onchange="updateModels()">
               <option value="" disabled selected>Select Make</option>
               <option value="Acura">Acura</option><option value="Audi">Audi</option><option value="BMW">BMW</option><option value="Buick">Buick</option><option value="Cadillac">Cadillac</option><option value="Chevrolet">Chevrolet</option><option value="Chrysler">Chrysler</option><option value="Dodge">Dodge</option><option value="Ferrari">Ferrari</option><option value="Fiat">Fiat</option><option value="Ford">Ford</option><option value="Genesis">Genesis</option><option value="GMC">GMC</option><option value="Honda">Honda</option><option value="Hyundai">Hyundai</option><option value="Infiniti">Infiniti</option><option value="Jaguar">Jaguar</option><option value="Jeep">Jeep</option><option value="Kia">Kia</option><option value="Lamborghini">Lamborghini</option><option value="Land Rover">Land Rover</option><option value="Lexus">Lexus</option><option value="Lincoln">Lincoln</option><option value="Maserati">Maserati</option><option value="Mazda">Mazda</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="MINI">MINI</option><option value="Mitsubishi">Mitsubishi</option><option value="Nissan">Nissan</option><option value="Porsche">Porsche</option><option value="RAM">RAM</option><option value="Rolls-Royce">Rolls-Royce</option><option value="Subaru">Subaru</option><option value="Tesla">Tesla</option><option value="Toyota">Toyota</option><option value="Volkswagen">Volkswagen</option><option value="Volvo">Volvo</option><option value="Other">Other</option>
             </select>
           </div>
           <div class="field">
             <label for="model">Model *</label>
-            <select id="model" name="model" class="vehicle-select" required>
+            <select id="model" name="Model" class="vehicle-select" required>
               <option value="" disabled selected>Select Make First</option>
             </select>
           </div>
@@ -222,37 +222,37 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="row row-3">
           <div class="field">
             <label for="trim">Trim / Engine</label>
-            <input type="text" id="trim" name="trim" placeholder="330i xDrive"/>
+            <input type="text" id="trim" name="Trim" placeholder="330i xDrive"/>
           </div>
           <div class="field">
             <label for="color">Color</label>
-            <input type="text" id="color" name="color" placeholder="Alpine White"/>
+            <input type="text" id="color" name="Color" placeholder="Alpine White"/>
           </div>
           <div class="field">
             <label for="mileage">Mileage *</label>
-            <input type="text" id="mileage" name="mileage" placeholder="72,000" inputmode="numeric" required/>
+            <input type="text" id="mileage" name="Mileage" placeholder="72,000" inputmode="numeric" required/>
           </div>
         </div>
         <div class="row row-2">
           <div class="field">
             <label for="plate">License Plate</label>
-            <input type="text" id="plate" name="plate" placeholder="ABC-1234"/>
+            <input type="text" id="plate" name="License Plate" placeholder="ABC-1234"/>
           </div>
           <div class="field">
             <label for="vin">VIN Number</label>
-            <input type="text" id="vin" name="vin" placeholder="WBA8E9G50NU000001" maxlength="17"/>
+            <input type="text" id="vin" name="VIN" placeholder="WBA8E9G50NU000001" maxlength="17"/>
           </div>
         </div>
         <div class="field" style="margin-top:4px;">
           <label>Warning Lights On?</label>
           <div class="check-group" style="margin-top:8px;">
-            <label class="check-item"><input type="checkbox" name="lights" value="Check Engine"/><span>Check Engine</span></label>
-            <label class="check-item"><input type="checkbox" name="lights" value="ABS"/><span>ABS</span></label>
-            <label class="check-item"><input type="checkbox" name="lights" value="Airbag / SRS"/><span>Airbag / SRS</span></label>
-            <label class="check-item"><input type="checkbox" name="lights" value="Battery"/><span>Battery</span></label>
-            <label class="check-item"><input type="checkbox" name="lights" value="Oil Pressure"/><span>Oil Pressure</span></label>
-            <label class="check-item"><input type="checkbox" name="lights" value="TPMS"/><span>TPMS</span></label>
-            <label class="check-item"><input type="checkbox" name="lights" value="Other"/><span>Other</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="Check Engine"/><span>Check Engine</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="ABS"/><span>ABS</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="Airbag / SRS"/><span>Airbag / SRS</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="Battery"/><span>Battery</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="Oil Pressure"/><span>Oil Pressure</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="TPMS"/><span>TPMS</span></label>
+            <label class="check-item"><input type="checkbox" name="Warning Lights" value="Other"/><span>Other</span></label>
           </div>
         </div>
       </div>
@@ -263,39 +263,39 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="row" style="margin-bottom:16px;">
           <div class="field full">
             <label for="complaint">Customer Complaint *</label>
-            <input type="text" id="complaint" name="complaint" placeholder="e.g. Car makes grinding noise when braking" required/>
+            <input type="text" id="complaint" name="Customer Complaint" placeholder="e.g. Car makes grinding noise when braking" required/>
           </div>
         </div>
         <div class="row row-2">
           <div class="field">
             <label for="when_started">When Did It Start?</label>
-            <input type="text" id="when_started" name="when_started" placeholder="e.g. About 2 weeks ago"/>
+            <input type="text" id="when_started" name="When Did It Start" placeholder="e.g. About 2 weeks ago"/>
           </div>
           <div class="field">
             <label for="how_often">How Often Does It Occur?</label>
-            <input type="text" id="how_often" name="how_often" placeholder="e.g. Every time I brake"/>
+            <input type="text" id="how_often" name="How Often Does It Occur" placeholder="e.g. Every time I brake"/>
           </div>
         </div>
         <div class="field" style="margin-bottom:16px;">
           <label for="description">Describe the Problem in Detail</label>
-          <textarea id="description" name="description" placeholder="Describe any sounds, smells, when it happens, under what conditions, etc."></textarea>
+          <textarea id="description" name="Problem Description" placeholder="Describe any sounds, smells, when it happens, under what conditions, etc."></textarea>
         </div>
         <div class="field" style="margin-bottom:20px;">
           <label for="additional">Additional Concerns</label>
-          <textarea id="additional" name="additional" placeholder="Anything else you'd like us to check while the vehicle is here?" style="min-height:72px;"></textarea>
+          <textarea id="additional" name="Additional Concerns" placeholder="Anything else you'd like us to check while the vehicle is here?" style="min-height:72px;"></textarea>
         </div>
         <div class="field" style="margin-bottom:16px;">
           <label>Previous Work on This Issue?</label>
           <div class="check-group" style="margin-top:8px;">
-            <label class="check-item"><input type="checkbox" name="prev_work" value="Taken to another shop"/><span>Taken to another shop</span></label>
-            <label class="check-item"><input type="checkbox" name="prev_work" value="DIY repair attempted"/><span>DIY repair attempted</span></label>
-            <label class="check-item"><input type="checkbox" name="prev_work" value="Parts already replaced"/><span>Parts already replaced</span></label>
-            <label class="check-item"><input type="checkbox" name="prev_work" value="None"/><span>None / Unknown</span></label>
+            <label class="check-item"><input type="checkbox" name="Previous Work" value="Taken to another shop"/><span>Taken to another shop</span></label>
+            <label class="check-item"><input type="checkbox" name="Previous Work" value="DIY repair attempted"/><span>DIY repair attempted</span></label>
+            <label class="check-item"><input type="checkbox" name="Previous Work" value="Parts already replaced"/><span>Parts already replaced</span></label>
+            <label class="check-item"><input type="checkbox" name="Previous Work" value="None"/><span>None / Unknown</span></label>
           </div>
         </div>
         <div class="field">
           <label for="last_service">Last Service — What & Where?</label>
-          <input type="text" id="last_service" name="last_service" placeholder="e.g. Oil change 3 months ago at Jiffy Lube"/>
+          <input type="text" id="last_service" name="Last Service" placeholder="e.g. Oil change 3 months ago at Jiffy Lube"/>
         </div>
       </div>
 
@@ -305,11 +305,11 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="row row-2">
           <div class="field">
             <label for="appt_date">Preferred Date *</label>
-            <input type="date" id="appt_date" name="appt_date" required/>
+            <input type="date" id="appt_date" name="Appointment Date" required/>
           </div>
           <div class="field">
             <label for="appt_time">Preferred Time</label>
-            <select id="appt_time" name="appt_time">
+            <select id="appt_time" name="Appointment Time">
               <option value="">Any time works</option>
               <option>8:00 AM – 10:00 AM</option>
               <option>10:00 AM – 12:00 PM</option>
@@ -321,7 +321,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         </div>
         <div class="field">
           <label for="appt_notes">Anything else we should know before your visit?</label>
-          <input type="text" id="appt_notes" name="appt_notes" placeholder="e.g. I need a ride back home, car won't start so I'll need a tow, etc."/>
+          <input type="text" id="appt_notes" name="Appointment Notes" placeholder="e.g. I need a ride back home, car won't start so I'll need a tow, etc."/>
         </div>
         <div class="appt-notice">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -338,11 +338,11 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="row row-3">
           <div class="field full" style="grid-column:1/3;">
             <label for="sig_name">Print Name *</label>
-            <input type="text" id="sig_name" name="sig_name" placeholder="Full legal name" required class="sig-input"/>
+            <input type="text" id="sig_name" name="Signature Name" placeholder="Full legal name" required class="sig-input"/>
           </div>
           <div class="field">
             <label for="sig_date">Date *</label>
-            <input type="date" id="sig_date" name="sig_date" required/>
+            <input type="date" id="sig_date" name="Signature Date" required/>
           </div>
         </div>
       </div>
