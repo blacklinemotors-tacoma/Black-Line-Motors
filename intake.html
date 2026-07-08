@@ -146,6 +146,26 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
   nav{padding:0 16px;}
   .row-2,.row-3{grid-template-columns:1fr;}
 }
+
+/* MODE TOGGLE */
+.mode-toggle-wrap{margin-bottom:40px;text-align:center;}
+.mode-toggle{display:inline-flex;position:relative;background:#0d0d0d;border:1px solid #2a2a2a;padding:4px;margin-bottom:12px;border-radius:2px;}
+.mode-btn{position:relative;z-index:1;background:transparent;border:none;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 32px;cursor:pointer;transition:color .25s;display:flex;align-items:center;gap:8px;}
+.mode-btn.active{color:#fff;}
+.mode-slider{position:absolute;top:4px;left:4px;height:calc(100% - 8px);width:calc(50% - 4px);background:#cc1f1f;transition:transform .35s cubic-bezier(.23,1,.32,1);z-index:0;pointer-events:none;}
+.mode-slider.right{transform:translateX(100%);}
+.mode-desc{font-size:13px;color:#666;transition:opacity .3s;}
+/* VIN */
+.vin-badge{background:rgba(204,31,31,.12);border:1px solid rgba(204,31,31,.3);color:#cc1f1f;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;margin-left:6px;vertical-align:middle;}
+.vin-tip{color:#555;cursor:help;font-size:13px;margin-left:4px;vertical-align:middle;}
+.field-hint{font-size:11px;color:#444;margin-top:5px;font-style:italic;}
+/* MORE DETAILS BTN */
+.more-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:transparent;border:1px solid #2a2a2a;border-left:3px solid #cc1f1f;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 20px;cursor:pointer;transition:all .2s;margin-top:8px;}
+.more-btn:hover,.more-btn.open{background:rgba(204,31,31,.07);color:#e02222;border-color:#cc1f1f;}
+/* EXPANDED */
+.expanded-fields{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.23,1,.32,1),opacity .4s ease;opacity:0;pointer-events:none;}
+.expanded-fields.open{max-height:1200px;opacity:1;pointer-events:all;}
+.expanded-inner{padding-top:20px;display:flex;flex-direction:column;gap:16px;}
 </style>
 </head>
 <body>
@@ -163,7 +183,20 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
     <p class="page-sub">Fill out the form below and we'll get back to you shortly to confirm your appointment.</p>
     <div class="divider"></div>
 
-    <form id="roForm" action="https://formspree.io/f/mrewggaj" method="POST">
+    <div class="mode-toggle-wrap">
+    <div class="mode-toggle">
+      <button type="button" class="mode-btn active" id="btn-easy" onclick="setMode('easy')">
+        ⚡ Quick Form
+      </button>
+      <button type="button" class="mode-btn" id="btn-full" onclick="setMode('full')">
+        🔧 Full Details
+      </button>
+      <div class="mode-slider" id="mode-slider"></div>
+    </div>
+    <p class="mode-desc" id="mode-desc">Fill in the basics — we'll follow up with any questions</p>
+  </div>
+
+  <form id="roForm" action="https://formspree.io/f/mrewggaj" method="POST">
 
       <!-- 1. CUSTOMER -->
       <div class="form-section">
@@ -239,7 +272,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
             <input type="text" id="plate" name="License Plate" placeholder="ABC-1234"/>
           </div>
           <div class="field">
-            <label for="vin">VIN Number</label>
+            <label for="vin">VIN Number<span class="vin-badge">Optional</span><span class="vin-tip" title="Find on dashboard (driver side) or inside door jamb">ⓘ</span></label>
             <input type="text" id="vin" name="VIN" placeholder="WBA8E9G50NU000001" maxlength="17"/>
           </div>
         </div>
@@ -276,26 +309,44 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
             <input type="text" id="how_often" name="How Often Does It Occur" placeholder="e.g. Every time I brake"/>
           </div>
         </div>
-        <div class="field" style="margin-bottom:16px;">
-          <label for="description">Describe the Problem in Detail</label>
-          <textarea id="description" name="Problem Description" placeholder="Describe any sounds, smells, when it happens, under what conditions, etc."></textarea>
-        </div>
-        <div class="field" style="margin-bottom:20px;">
-          <label for="additional">Additional Concerns</label>
-          <textarea id="additional" name="Additional Concerns" placeholder="Anything else you'd like us to check while the vehicle is here?" style="min-height:72px;"></textarea>
-        </div>
-        <div class="field" style="margin-bottom:16px;">
-          <label>Previous Work on This Issue?</label>
-          <div class="check-group" style="margin-top:8px;">
-            <label class="check-item"><input type="checkbox" name="Previous Work" value="Taken to another shop"/><span>Taken to another shop</span></label>
-            <label class="check-item"><input type="checkbox" name="Previous Work" value="DIY repair attempted"/><span>DIY repair attempted</span></label>
-            <label class="check-item"><input type="checkbox" name="Previous Work" value="Parts already replaced"/><span>Parts already replaced</span></label>
-            <label class="check-item"><input type="checkbox" name="Previous Work" value="None"/><span>None / Unknown</span></label>
+
+        <!-- MORE DETAILS BUTTON -->
+        <button type="button" class="more-btn" id="more-btn" onclick="toggleDetails()">
+          <span id="more-icon">＋</span> More Details
+        </button>
+
+        <!-- EXPANDED FIELDS -->
+        <div class="expanded-fields" id="expanded-fields">
+          <div class="expanded-inner">
+            <div class="field">
+              <label for="description">
+                Describe the Problem in Detail
+                <span style="color:#555;font-size:10px;letter-spacing:1px;margin-left:6px;">OPTIONAL</span>
+              </label>
+              <textarea id="description" name="Problem Description" placeholder="Sounds, smells, conditions — the more detail the better"></textarea>
+            </div>
+            <div class="field">
+              <label for="additional">Additional Concerns</label>
+              <textarea id="additional" name="Additional Concerns" placeholder="Anything else you'd like us to check while the vehicle is here?" style="min-height:72px;"></textarea>
+            </div>
+            <div class="field">
+              <label>Previous Work on This Issue?</label>
+              <div class="check-group" style="margin-top:8px;">
+                <label class="check-item"><input type="checkbox" name="Previous Work" value="Taken to another shop"/><span>Taken to another shop</span></label>
+                <label class="check-item"><input type="checkbox" name="Previous Work" value="DIY repair attempted"/><span>DIY repair attempted</span></label>
+                <label class="check-item"><input type="checkbox" name="Previous Work" value="Parts already replaced"/><span>Parts already replaced</span></label>
+                <label class="check-item"><input type="checkbox" name="Previous Work" value="None"/><span>None / Unknown</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="last_service">Last Service — What & Where?</label>
+              <input type="text" id="last_service" name="Last Service" placeholder="e.g. Oil change 3 months ago at Jiffy Lube"/>
+            </div>
+            <div class="field">
+              <label for="anything_else">Anything Else We Should Know?</label>
+              <input type="text" id="anything_else" name="Anything Else" placeholder="e.g. Need a ride home, car won't start, bringing a tow, etc."/>
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label for="last_service">Last Service — What & Where?</label>
-          <input type="text" id="last_service" name="Last Service" placeholder="e.g. Oil change 3 months ago at Jiffy Lube"/>
         </div>
       </div>
 
@@ -459,7 +510,7 @@ function updateModels() {
 
 document.addEventListener('DOMContentLoaded', function() {
   // Set today's date on signature
-  document.getElementById('sig_date').valueAsDate = new Date();
+  const sigDate = document.getElementById('sig_date'); if (sigDate) sigDate.valueAsDate = new Date();
 
   // Set min appointment date to tomorrow
   const apptInput = document.getElementById('appt_date');
@@ -507,5 +558,43 @@ document.getElementById('roForm').addEventListener('submit', async function(e) {
   }
 });
 </script>
+
+<script>
+function setMode(mode) {
+  const slider = document.getElementById('mode-slider');
+  const btnEasy = document.getElementById('btn-easy');
+  const btnFull = document.getElementById('btn-full');
+  const desc = document.getElementById('mode-desc');
+  const exp = document.getElementById('expanded-fields');
+  const btn = document.getElementById('more-btn');
+  const icon = document.getElementById('more-icon');
+  if (mode === 'easy') {
+    btnEasy.classList.add('active');
+    btnFull.classList.remove('active');
+    slider.classList.remove('right');
+    desc.textContent = "Fill in the basics — we'll follow up with any questions";
+    exp.classList.remove('open');
+    btn.classList.remove('open');
+    icon.textContent = '＋';
+  } else {
+    btnFull.classList.add('active');
+    btnEasy.classList.remove('active');
+    slider.classList.add('right');
+    desc.textContent = 'Full details help us prepare everything before you arrive';
+    exp.classList.add('open');
+    btn.classList.add('open');
+    icon.textContent = '－';
+  }
+}
+function toggleDetails() {
+  const exp = document.getElementById('expanded-fields');
+  const btn = document.getElementById('more-btn');
+  const icon = document.getElementById('more-icon');
+  const isOpen = exp.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  icon.textContent = isOpen ? '－' : '＋';
+}
+</script>
+
 </body>
 </html>
