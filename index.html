@@ -159,7 +159,7 @@ engine diagnostics Tacoma, pre-purchase inspection Tacoma,
 emergency mechanic Tacoma, same day car repair Tacoma, urgent car repair Tacoma,
 BMW won't start Tacoma, Audi overheating Tacoma, car broke down Tacoma,
 Black Line Motors, blacklinemotors.us, auto repair shop Tacoma WA
-"/>/>
+"/>
 <meta name="robots" content="index, follow"/>
 <meta name="author" content="Black Line Motors"/>
 <meta name="geo.region" content="US-WA"/>
@@ -993,6 +993,21 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:40px 2
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* ══ NEW TOP NAV: Contact at top, splits on scroll ══ */
+nav#topnav{position:fixed!important;top:0;left:0;right:0;z-index:100;height:68px!important;padding:0 20px!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;background:transparent!important;backdrop-filter:none!important;border-bottom:1px solid transparent!important;transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;}
+nav#topnav.scrolled{background:rgba(0,0,0,.94)!important;backdrop-filter:blur(12px)!important;border-bottom-color:#2a2a2a!important;}
+.tn-contact{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;text-decoration:none;background:#cc1f1f;padding:11px 26px;transition:opacity .3s ease,transform .3s ease,background .2s;}
+.tn-contact:hover{background:#e02222;}
+nav#topnav.scrolled .tn-contact{opacity:0;transform:scale(.85);pointer-events:none;position:absolute;right:20px;}
+.tn-items{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);opacity:0;transform:scaleX(.4);pointer-events:none;transition:opacity .4s ease .05s,transform .45s cubic-bezier(.23,1,.32,1);}
+nav#topnav.scrolled .tn-items{opacity:1;transform:scaleX(1);pointer-events:auto;}
+.tn-link{font-family:'Barlow Condensed',sans-serif;font-size:clamp(15px,3.6vw,18px);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#e8ecf0;text-decoration:none;white-space:nowrap;position:relative;transition:color .2s;}
+.tn-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#cc1f1f;transition:width .25s;}
+.tn-link:hover{color:#fff;} .tn-link:hover::after{width:100%;}
+.tn-phone{font-family:'Barlow Condensed',sans-serif;font-size:clamp(15px,3.6vw,18px);font-weight:700;letter-spacing:1.5px;color:#fff;text-decoration:none;white-space:nowrap;background:rgba(204,31,31,.18);border:1.5px solid #cc1f1f;padding:8px 14px;box-shadow:0 0 18px rgba(204,31,31,.25);transition:background .2s;}
+.tn-phone:hover{background:rgba(204,31,31,.35);}
+@media(max-width:480px){.tn-items{gap:14px;padding:0 10px;}.tn-link{font-size:15px;}.tn-phone{font-size:15px;}.tn-link,.tn-phone{letter-spacing:1px;}.tn-phone{padding:7px 10px;}}
 </style>
 </head>
 <body>
@@ -1006,15 +1021,24 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:40px 2
   <p>Black Line Motors is a full-service auto repair shop located at 1002 E F St, Tacoma, WA 98421. We specialize in BMW repair Tacoma and Audi repair Tacoma, and service all domestic and import vehicles. Services include oil change Tacoma, brake repair Tacoma, engine diagnostics Tacoma, transmission service, AC repair, suspension service, pre-purchase inspection, towing Tacoma, and mobile mechanic Tacoma. We serve Tacoma, Federal Way, Lakewood, Puyallup, Auburn, Kent, Spanaway, University Place and surrounding areas within 30 miles. Open Monday–Friday 8:30 AM–8:30 PM, Saturday 10:00 AM–5:00 PM. Closed Sunday. Call (253) 204-9383.</p>
 </div>
 
-<nav>
-  <a href="#" style="display:block;line-height:0;"><img class="nav-logo" src="logo.webp" loading="eager" fetchpriority="high" decoding="async" alt="Black Line Motors"/></a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
-  </ul>
+<!-- Google Ads Phone Verification -->
+<div itemscope itemtype="http://schema.org/LocalBusiness" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+  <span itemprop="name">Black Line Motors</span>
+  <span itemprop="telephone">(253) 204-9383</span>
+  <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <span itemprop="streetAddress">1002 E F St</span>
+    <span itemprop="addressLocality">Tacoma</span>
+    <span itemprop="addressRegion">WA</span>
+    <span itemprop="postalCode">98421</span>
+  </span>
+</div>
+<nav id="topnav">
+  <div class="tn-items">
+    <a href="#services" class="tn-link">Services</a>
+    <a href="#contact" class="tn-link">&#128205; Location</a>
+    <a href="tel:+12532049383" class="tn-phone">&#128222; 253-204-9383</a>
+  </div>
+  <a href="#contact" class="tn-contact">Contact</a>
 </nav>
 
 <section id="hero">
@@ -1369,7 +1393,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:40px 2
     <div class="contact-inner">
       <div class="reveal">
         <div class="contact-block"><div class="contact-label">Address</div><div class="contact-value">1002 E F St<br>Tacoma, WA 98421</div></div>
-        <div class="contact-block"><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:+12532049383" style="color:inherit;text-decoration:none;" onclick="window.location.href='tel:+12532049383';return false;">(253) 204-9383</a></div></div>
+        <div class="contact-block"><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:+12532049383" style="color:inherit;text-decoration:none;" onclick="window.location.href='tel:+12532049383';return false;">(253) 204-9383</a><br><span style="font-size:14px;color:#666;letter-spacing:1px;">253-204-9383</span></div></div>
         <div class="contact-block">
           <div class="contact-label">Hours</div>
           <div class="hours-row"><span>Monday &ndash; Friday</span><span>8:30 AM &ndash; 8:30 PM</span></div>
@@ -1767,6 +1791,10 @@ document.querySelectorAll('.split-reveal').forEach(el => splitObserver.observe(e
 
 /* marquee speed — fixed */
 
+</script>
+
+<script>
+(function(){const n=document.getElementById('topnav');function u(){n.classList.toggle('scrolled',window.scrollY>80);}addEventListener('scroll',u,{passive:true});u();})();
 </script>
 </body>
 </html>
