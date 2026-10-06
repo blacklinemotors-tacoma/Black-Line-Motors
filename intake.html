@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Book Service — Black Line Motors | Tacoma, WA</title>
+<title>Book Your Appointment — Black Line Motors | Tacoma, WA</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{--black:#000000;--dark:#080808;--card:#0d0d0d;--border:#2a2a2a;--red:#cc1f1f;--red-glow:#e02222;--chrome:#c8cdd4;--chrome-light:#e8ecf0;--white:#f4f4f4;--muted:#888;}
@@ -11,7 +11,7 @@
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;line-height:1.6;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;}
-.nav-logo{height:48px;width:auto;display:block;}
+.nav-logo{height:40px;width:auto;display:block;}
 .nav-back{color:var(--chrome);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;display:flex;align-items:center;gap:8px;}
 .nav-back:hover{color:var(--red-glow);}
 .nav-phone{color:var(--chrome);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-decoration:none;}
@@ -273,12 +273,14 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
   line-height: 1.6;
 }
 </style>
+<link rel="icon" href="/favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 </head>
 <body>
 
 <nav>
-  <a href="#" style="display:block;line-height:0;"><img class="nav-logo" src="logo.webp alt="Black Line Motors"/></a>
-  <a class="nav-back" href="index.html">&#8592; Back to Site</a>
+    <a class="nav-back" href="index.html">&#8592; Back to Site</a>
   <a class="nav-phone" href="tel:+12532049383">(253) 204-9383</a>
 </nav>
 
@@ -286,8 +288,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
   <div id="form-wrapper">
     <!-- ══ HEADER ══ -->
     <div class="intake-header-block">
-      <h1 class="intake-brand" data-text="Black Line Motors">Black Line Motors</h1>
-      <div style="width:80px;height:3px;background:linear-gradient(90deg,transparent,#cc1f1f,transparent);margin:0 auto 16px;"></div>
+      <h1 style="margin:0 auto 10px;line-height:0;"><img src="logo.webp" alt="Black Line Motors" style="width:min(440px,82vw);height:auto;display:block;margin:0 auto;"/></h1>
+      
       <div class="intake-addr-wrap">
         <a href="#" class="intake-addr-link" onclick="var m=document.getElementById('intake-addr-menu');m.style.display=m.style.display==='block'?'none':'block';return false;">
           &#128205; 1002 E F St, Tacoma, WA 98421
@@ -308,8 +310,13 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <a href="mailto:Blacklinemotorsllc@gmail.com" style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:1.5px;color:#888;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#cc1f1f'" onmouseout="this.style.color='#888'">&#9993; Blacklinemotorsllc@gmail.com</a>
       </div>
       <h2 class="intake-page-title">Book Your Appointment</h2>
-      <p class="intake-page-sub">Fill out the form below and we'll confirm your appointment within 1 hour.</p>
+      <p class="intake-page-sub">Fill out the form below. We'll confirm, usually within 1 hour during business hours.</p>
       <div class="divider" style="margin:20px auto 0;"></div>
+      <!--BL:IQUOTE--><figure style="max-width:560px;margin:22px auto 0;padding:16px 20px;border:1px solid #262626;border-left:3px solid #cc1f1f;background:#0d0d0d;text-align:left;">
+        <div style="color:#f5b301;letter-spacing:2px;font-size:15px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote style="margin:0;color:#e8e8e8;font-size:17px;line-height:1.55;font-style:italic;">&ldquo;Very polite and honest guys&hellip; They explained everything clearly and even showed the old parts.&rdquo;</blockquote>
+        <figcaption style="margin-top:8px;color:#999;font-size:14px;">&mdash; Rustam S., Google review</figcaption>
+      </figure><!--/BL:IQUOTE-->
     </div>
 
     <div class="mode-toggle-wrap">
@@ -459,8 +466,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
             <input type="text" id="color" name="Color" placeholder="Alpine White"/>
           </div>
           <div class="field">
-            <label for="mileage">Mileage *</label>
-            <input type="text" id="mileage" name="Mileage" placeholder="72,000" inputmode="numeric" required/>
+            <label for="mileage">Mileage</label>
+            <input type="text" id="mileage" name="Mileage" placeholder="72,000" inputmode="numeric"/>
           </div>
         </div>
         <div class="row row-2">
@@ -552,8 +559,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         <div class="sec-bar">4. Preferred Appointment</div>
         <div class="row row-2">
           <div class="field">
-            <label for="appt_date">Preferred Date *</label>
-            <input type="date" id="appt_date" name="Appointment Date" required/>
+            <label for="appt_date">Preferred Date</label>
+            <input type="date" id="appt_date" name="Appointment Date"/>
           </div>
           <div class="field">
             <label for="appt_time">Preferred Time</label>
@@ -573,7 +580,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
         </div>
         <div class="appt-notice">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>We'll contact you within a few hours to confirm your appointment. Dates are subject to availability.</span>
+          <span>We'll call or text to confirm, usually within 1 hour during business hours. Dates are subject to availability.</span>
         </div>
       </div>
 
@@ -597,7 +604,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
 
       <div class="submit-row">
         <button type="submit" class="btn-submit">Submit</button>
-        <p class="submit-note">We'll contact you within a few hours to confirm your appointment.<br/>Questions? Call us at <a href="tel:+12532049383" style="color:var(--red);">(253) 204-9383</a></p>
+        <p class="submit-note">We'll call or text to confirm, usually within 1 hour during business hours.<br/>Questions? Call us at <a href="tel:+12532049383" style="color:var(--red);">(253) 204-9383</a></p>
       </div>
 
     </form>
@@ -609,7 +616,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h2 class="success-title">Request Received</h2>
-    <p class="success-sub">Thank you! We'll contact you within a few hours to confirm your appointment date and time.</p>
+    <p class="success-sub">Thank you! We'll call or text you to confirm, usually within 1 hour during business hours.</p>
     <a href="index.html" class="success-back">&#8592; Back to Black Line Motors</a>
   </div>
 </main>
@@ -732,6 +739,12 @@ document.getElementById('roForm').addEventListener('submit', async function(e) {
   const btn = form.querySelector('.btn-submit');
   btn.textContent = 'Sending...';
   btn.disabled = true;
+
+  // Copy to Black Line Motors Repair Orders (Google Sheet + email). Paste the Web App URL below.
+  const RO_SCRIPT_URL = '';
+  if (RO_SCRIPT_URL) {
+    try { fetch(RO_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) }); } catch (err) {}
+  }
 
   try {
     const res = await fetch(form.action, {
