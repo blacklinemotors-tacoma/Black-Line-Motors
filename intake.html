@@ -12,6 +12,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Book Your Appointment — Black Line Motors | Tacoma, WA</title>
+<meta name="description" content="Book auto repair online at Black Line Motors in Tacoma, WA. Tell us about your car and we confirm, usually within 1 hour. Warranty repairs accepted."/>
+<link rel="canonical" href="https://blacklinemotors.us/intake"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{--black:#000000;--dark:#080808;--card:#0d0d0d;--border:#2a2a2a;--red:#cc1f1f;--red-glow:#e02222;--chrome:#c8cdd4;--chrome-light:#e8ecf0;--white:#f4f4f4;--muted:#888;}
@@ -69,6 +71,10 @@ textarea{resize:vertical;min-height:96px;}
 }
 .check-item input[type="checkbox"]:hover{border-color:var(--red);}
 .check-item span{font-size:13px;color:var(--chrome-light);}
+.check-item input[type="radio"]{appearance:none;-webkit-appearance:none;width:18px;height:18px;padding:0;border:1.5px solid #555;border-radius:50%;background:#0d0d0d;cursor:pointer;flex-shrink:0;position:relative;}
+.check-item input[type="radio"]:checked{border-color:var(--red);box-shadow:inset 0 0 0 4px #0d0d0d;background:var(--red);}
+.check-item input[type="radio"]:hover{border-color:var(--red);}
+.check-group .check-item{margin-right:14px;}
 
 /* CONTACT PREF */
 .contact-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
@@ -284,6 +290,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/logo-square.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/logo-square.png"/>
+<style id="bl-tt-css">.bl-tt{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid #333;color:#e8ecf0!important;text-decoration:none!important;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;transition:border-color .2s,color .2s;}.bl-tt:hover{border-color:#cc1f1f;color:#fff!important;}.bl-badge-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 16px;margin-bottom:22px;}.bl-badge-row .bl-badge{margin:0;}.bl-allrev{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid #cc1f1f;padding-bottom:3px;animation:fadeUp .9s .25s ease both;}.bl-allrev:hover{color:#f5b301;}</style>
 </head>
 <body>
 
@@ -300,14 +307,14 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
       
       <div class="intake-addr-wrap">
         <a href="#" class="intake-addr-link" onclick="var m=document.getElementById('intake-addr-menu');m.style.display=m.style.display==='block'?'none':'block';return false;">
-          &#128205; 1002 E F St, Tacoma, WA 98421
+          &#128205; 1002 E F St, Ste C, Tacoma, WA 98421
         </a>
         <div id="intake-addr-menu" class="intake-addr-menu">
           <a href="https://www.google.com/maps/dir/?api=1&destination=1002+E+F+St+Tacoma+WA+98421" target="_blank" rel="noopener" class="addr-option">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#4285F4"/></svg>
             Google Maps
           </a>
-          <a href="http://maps.apple.com/?daddr=1002+E+F+St,Tacoma,WA+98421" target="_blank" rel="noopener" class="addr-option">
+          <a href="https://maps.apple.com/?daddr=1002+E+F+St,Tacoma,WA+98421" target="_blank" rel="noopener" class="addr-option">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="#888"/></svg>
             Apple Maps
           </a>
@@ -511,6 +518,27 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
             <input type="text" id="complaint" name="Customer Complaint" placeholder="e.g. Car makes grinding noise when braking" required/>
           </div>
         </div>
+        <div class="row" style="margin-bottom:16px;">
+          <div class="field full">
+            <label>How Will You Pay?</label>
+            <div class="check-group" style="padding-top:6px;">
+              <label class="check-item"><input type="radio" name="Payment Type" value="Self-pay" onchange="blPay(this)" checked/><span>Self-pay</span></label>
+              <label class="check-item"><input type="radio" name="Payment Type" value="Extended Warranty / Service Contract" onchange="blPay(this)"/><span>Extended Warranty</span></label>
+              <label class="check-item"><input type="radio" name="Payment Type" value="Mechanical Breakdown Insurance" onchange="blPay(this)"/><span>Insurance</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="row row-2" id="bl-ins" style="display:none;margin-bottom:16px;">
+          <div class="field">
+            <label for="ins_provider">Warranty / Insurance Company</label>
+            <input type="text" id="ins_provider" name="Warranty Provider" placeholder="Company name"/>
+          </div>
+          <div class="field">
+            <label for="ins_policy">Contract / Policy #</label>
+            <input type="text" id="ins_policy" name="Policy Number" placeholder="If you have it handy"/>
+          </div>
+        </div>
+        <script>function blPay(r){document.getElementById('bl-ins').style.display=(r.value==='Self-pay')?'none':'grid';}</script>
         <div class="row row-2">
           <div class="field">
             <label for="when_started">When Did It Start?</label>
@@ -637,7 +665,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:28px 2
 </div>
 
 <footer>
-  Black Line Motors &nbsp;·&nbsp; 1002 E F St, Tacoma WA 98421 &nbsp;·&nbsp; (253) 204-9383 &nbsp;·&nbsp; blacklinemotors.us
+  Black Line Motors LLC &nbsp;·&nbsp; 1002 E F St, Ste C, Tacoma WA 98421 &nbsp;·&nbsp; (253) 204-9383 &nbsp;·&nbsp; blacklinemotors.us
+  <div style="margin-top:12px;"><a class="bl-tt" href="https://www.tiktok.com/@blacklinemotors.tacoma" target="_blank" rel="noopener" aria-label="Black Line Motors on TikTok"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-3px"><path fill="currentColor" d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.4a2.9 2.9 0 1 1-2-2.7V9.2a6.3 6.3 0 1 0 5.4 6.2V8.6a8.2 8.2 0 0 0 3.8 1.2V6.7z"/></svg> @blacklinemotors.tacoma</a></div>
 </footer>
 
 <script>
