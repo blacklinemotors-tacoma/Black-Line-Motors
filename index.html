@@ -304,7 +304,7 @@ Black Line Motors, blacklinemotors.us, auto repair shop Tacoma WA
     {
       "@type": "Question",
       "name": "Do you offer towing to your shop in Tacoma?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Yes, we can arrange towing directly to our shop at 1002 E F St, Ste C, Tacoma, WA 98421. Call us at (253) 204-9383 and we'll coordinate everything."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes, we can arrange towing directly to our shop at 1002 E F St, Ste C, Tacoma, WA 98421. Call us at (253) 204-9383 and we'll coordinate everything. More at blacklinemotors.us/towing."}
     },
     {
       "@type": "Question",
@@ -1153,7 +1153,7 @@ html{overflow-x:hidden;}
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <img class="hero-logo-img" src="logo.webp" loading="eager" fetchpriority="high" decoding="async" alt="Black Line Motors – Tacoma, WA"/>
-  <div class="hero-tagline"><span style="color:#cc1f1f;">German &bull; Asian &bull; Domestic</span><br><h1 class="hero-h1">Full-Service Auto Repair &nbsp;&middot;&nbsp; <a href="mobile.html" style="color:inherit;text-decoration:none;border-bottom:1px solid #cc1f1f;">Mobile Mechanic</a> &nbsp;&middot;&nbsp; Towing Service</h1>
+  <div class="hero-tagline"><span style="color:#cc1f1f;">German &bull; Asian &bull; Domestic</span><br><h1 class="hero-h1">Full-Service Auto Repair &nbsp;&middot;&nbsp; <a href="mobile.html" style="color:inherit;text-decoration:none;border-bottom:1px solid #cc1f1f;">Mobile Mechanic</a> &nbsp;&middot;&nbsp; <a href="towing.html" style="color:inherit;text-decoration:underline;text-decoration-color:rgba(204,31,31,.6);text-underline-offset:5px;">Towing Service</a></h1>
 <br>
 <span style="position:relative;display:inline-block;margin-top:10px;">
   <a href="#" onclick="var m=document.getElementById('hero-addr-menu');m.style.display=m.style.display==='block'?'none':'block';return false;"
@@ -1218,7 +1218,7 @@ html{overflow-x:hidden;}
     <div style="flex:1;min-width:280px;background:rgba(204,31,31,.1);border:1px solid rgba(204,31,31,.35);border-left:4px solid #cc1f1f;padding:20px 24px;">
       <p style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#e8ecf0;margin-bottom:6px;">&#128663; Towing Service</p>
       <p style="font-size:13px;color:#bbb;line-height:1.6;margin-bottom:12px;">Stuck on the road? We'll tow your vehicle <strong style="color:#e8ecf0;">straight to our shop</strong> — fast, safe, no hassle.</p>
-      <a href="tel:+12532049383" style="color:#cc1f1f;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(204,31,31,.4);padding-bottom:2px;">&#128222; Call Now &rarr;</a>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;align-items:center;"><a href="tel:+12532049383" style="color:#cc1f1f;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(204,31,31,.4);padding-bottom:2px;">&#128222; Call Now &rarr;</a><a href="towing.html" style="color:#cc1f1f;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(204,31,31,.5);padding:6px 12px;">Learn More &rarr;</a></div>
     </div>
     <div style="flex:1;min-width:280px;background:rgba(204,31,31,.1);border:1px solid rgba(204,31,31,.35);border-left:4px solid #cc1f1f;padding:20px 24px;">
       <p style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#e8ecf0;margin-bottom:6px;">&#128296; Mobile Mechanic</p>
@@ -1343,7 +1343,7 @@ html{overflow-x:hidden;}
         <p class="service-desc">30k / 60k / 90k factory service intervals for all makes and models.</p>
         <div class="card-more">Learn more &#8250;</div>
       </div>
-      <div class="service-card reveal" onclick="openModal('towing')">
+      <div class="service-card reveal" onclick="window.location.href='towing.html'">
         <span class="service-icon">&#128663;</span>
         <div class="service-name">Towing Service</div>
         <p class="service-desc">Car won't move? We'll tow it straight to our shop — fast and safe.</p>
@@ -1460,6 +1460,82 @@ html{overflow-x:hidden;}
   </div>
 </section>
 <!--/BL:HOW-->
+<!--BL:SHOPGALLERY-->
+<section id="shop-photos" style="padding:96px 24px;border-top:1px solid #141414;">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Inside Black Line</p>
+      <h2 class="section-title">Real Shop. Real Work.</h2>
+      <div class="divider"></div>
+      <p style="color:#bbb;font-size:18px;max-width:680px;margin-top:6px;">No stock photos. This is our shop at 1002 E F St, Ste C in Tacoma and the cars we work on every day.</p>
+    </div>
+    <div class="sg-grid">
+      <figure class="sg-tile reveal sg-big" onclick="sgOpen(this)"><img src="s-inside-3.webp" alt="Black Line Auto Repair Tacoma: Inside the Shop, Two lifts, German, Asian & domestic cars" width="800" height="655" loading="lazy" decoding="async"/><figcaption><b>Inside the Shop</b><span>Two lifts, German, Asian &amp; domestic cars</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-front.webp" alt="Black Line Auto Repair Tacoma: Our Shop, 1002 E F St, Ste C, Tacoma" width="800" height="1003" loading="lazy" decoding="async"/><figcaption><b>Our Shop</b><span>1002 E F St, Ste C, Tacoma</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-inside-1.webp" alt="Black Line Auto Repair Tacoma: Real Work Every Day, Lifts, engine stand, parts on hand" width="800" height="709" loading="lazy" decoding="async"/><figcaption><b>Real Work Every Day</b><span>Lifts, engine stand, parts on hand</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-ac-pathfinder.webp" alt="Black Line Auto Repair Tacoma: A/C Recharge, 2018 Nissan Pathfinder" width="800" height="986" loading="lazy" decoding="async"/><figcaption><b>A/C Recharge</b><span>2018 Nissan Pathfinder</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-ac-corvette.webp" alt="Black Line Auto Repair Tacoma: A/C Recharge, Chevrolet Corvette" width="800" height="1188" loading="lazy" decoding="async"/><figcaption><b>A/C Recharge</b><span>Chevrolet Corvette</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-mini-scope.webp" alt="Black Line Auto Repair Tacoma: Burned Valve Found, Borescope inspection, 2008 Mini Cooper" width="800" height="1033" loading="lazy" decoding="async"/><figcaption><b>Burned Valve Found</b><span>Borescope inspection, 2008 Mini Cooper</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-mini-valve.webp" alt="Black Line Auto Repair Tacoma: Mini Cooper Engine, 2008 Mini Cooper, valve diagnosis" width="800" height="1048" loading="lazy" decoding="async"/><figcaption><b>Mini Cooper Engine</b><span>2008 Mini Cooper, valve diagnosis</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-vortec.webp" alt="Black Line Auto Repair Tacoma: Engine Work, 6.0 Vortec, new bearings installed" width="790" height="1316" loading="lazy" decoding="async"/><figcaption><b>Engine Work</b><span>6.0 Vortec, new bearings installed</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-audi-timing-1.webp" alt="Black Line Auto Repair Tacoma: Timing Chain Job, Audi 2.0L engine" width="800" height="1010" loading="lazy" decoding="async"/><figcaption><b>Timing Chain Job</b><span>Audi 2.0L engine</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-audi-a7.webp" alt="Black Line Auto Repair Tacoma: Audi A7, 2016 Audi A7 in the bay" width="800" height="922" loading="lazy" decoding="async"/><figcaption><b>Audi A7</b><span>2016 Audi A7 in the bay</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-bmw-530i.webp" alt="Black Line Auto Repair Tacoma: BMW 530i, In the bay for service" width="800" height="840" loading="lazy" decoding="async"/><figcaption><b>BMW 530i</b><span>In the bay for service</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-sprinter.webp" alt="Black Line Auto Repair Tacoma: Van Service, 2010 Mercedes Sprinter" width="800" height="1070" loading="lazy" decoding="async"/><figcaption><b>Van Service</b><span>2010 Mercedes Sprinter</span></figcaption></figure>
+      <figure class="sg-tile reveal" onclick="sgOpen(this)"><img src="s-inside-2.webp" alt="Black Line Auto Repair Tacoma: All Makes Welcome, Audi Q7 and more in the shop" width="800" height="740" loading="lazy" decoding="async"/><figcaption><b>All Makes Welcome</b><span>Audi Q7 and more in the shop</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<div id="sg-box" onclick="this.classList.remove('on')"><img alt=""/></div>
+<style>
+.sg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px;}
+.sg-big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;}.sg-big figcaption b{font-size:24px;}
+@media(max-width:1000px) and (min-width:701px){.sg-grid{grid-template-columns:repeat(3,1fr);}.sg-big{grid-column:1/-1;grid-row:auto;aspect-ratio:16/9;}}
+.sg-tile{position:relative;margin:0;overflow:hidden;border:1px solid #222;aspect-ratio:4/3.6;cursor:zoom-in;background:#0b0b0b;}
+.sg-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1);}
+.sg-tile:hover img{transform:scale(1.05);}
+.sg-tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 14px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));}
+.sg-tile figcaption b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:19px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;border-left:3px solid #cc1f1f;padding-left:9px;}
+.sg-tile figcaption span{display:block;color:#ccc;font-size:14px;margin-top:3px;padding-left:12px;}
+#sg-box{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:none;align-items:center;justify-content:center;padding:16px;cursor:zoom-out;}
+#sg-box.on{display:flex;}
+#sg-box img{max-width:100%;max-height:100%;border:1px solid #333;}
+@media(max-width:700px){#shop-photos{padding:72px 20px!important;}.sg-grid{grid-template-columns:1fr 1fr;gap:8px;}.sg-big{grid-column:1/-1;grid-row:auto;aspect-ratio:4/3.4;}.sg-tile figcaption{padding:34px 10px 10px;}.sg-tile figcaption b{font-size:15px;letter-spacing:1px;padding-left:7px;}.sg-tile figcaption span{display:none;}.sg-big figcaption span{display:block;}}
+</style>
+<script>function sgOpen(f){var b=document.getElementById('sg-box');b.querySelector('img').src=f.querySelector('img').src;b.classList.add('on');}</script>
+<!--/BL:SHOPGALLERY-->
+<!--BL:SPOTLIGHT-->
+<section id="job-spotlight" style="padding:80px 24px 96px;border-top:1px solid #141414;background:linear-gradient(180deg,#000,#070707);">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Job Spotlight &middot; Step by Step</p>
+      <h2 class="section-title">2016 Dodge Journey: Timing Chain Replacement</h2>
+      <div class="divider"></div>
+      <p style="color:#bbb;font-size:18px;max-width:700px;margin-top:6px;">This is how we do a big engine job. Every step is checked, and we can show you photos of your car too.</p>
+    </div>
+    <div class="js-grid">
+      <figure class="js-step reveal" onclick="sgOpen(this)"><div class="js-img"><img src="j-journey-1.webp" alt="2016 Dodge Journey timing chain replacement: Start of the Job" width="800" height="1042" loading="lazy" decoding="async"/><span class="js-n">01</span></div><figcaption><b>Start of the Job</b><span>Car in the bay, engine opened up</span></figcaption></figure>
+      <figure class="js-step reveal" onclick="sgOpen(this)"><div class="js-img"><img src="j-journey-2.webp" alt="2016 Dodge Journey timing chain replacement: New Chains Installed" width="800" height="1041" loading="lazy" decoding="async"/><span class="js-n">02</span></div><figcaption><b>New Chains Installed</b><span>Timing chains and guides replaced</span></figcaption></figure>
+      <figure class="js-step reveal" onclick="sgOpen(this)"><div class="js-img"><img src="j-journey-3.webp" alt="2016 Dodge Journey timing chain replacement: Timing Marks Checked" width="800" height="577" loading="lazy" decoding="async"/><span class="js-n">03</span></div><figcaption><b>Timing Marks Checked</b><span>Every mark lined up before closing</span></figcaption></figure>
+      <figure class="js-step reveal" onclick="sgOpen(this)"><div class="js-img"><img src="j-journey-4.webp" alt="2016 Dodge Journey timing chain replacement: Back Together" width="800" height="1050" loading="lazy" decoding="async"/><span class="js-n">04</span></div><figcaption><b>Back Together</b><span>Engine reassembled and ready to run</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<style>
+.js-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px;}
+.js-step{margin:0;background:#0d0d0d;border:1px solid #222;cursor:zoom-in;transition:border-color .25s;}
+.js-step:hover{border-color:#cc1f1f;}
+.js-img{position:relative;aspect-ratio:4/4.4;overflow:hidden;}
+.js-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.js-n{position:absolute;top:10px;left:10px;font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;color:#fff;background:#cc1f1f;padding:6px 10px 3px;}
+.js-step figcaption{padding:14px 16px 16px;}
+.js-step figcaption b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:19px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;}
+.js-step figcaption span{display:block;color:#aaa;font-size:15px;margin-top:4px;line-height:1.45;}
+@media(max-width:900px){.js-grid{grid-template-columns:1fr 1fr;gap:10px;}.js-step figcaption{padding:10px 12px 12px;}.js-step figcaption b{font-size:16px;letter-spacing:1px;}.js-step figcaption span{font-size:13px;}.js-n{font-size:26px;}}
+@media(max-width:700px){#job-spotlight{padding:64px 20px 72px!important;}}
+</style>
+<!--/BL:SPOTLIGHT-->
+
 
 
 <section id="stats-section">
@@ -1773,6 +1849,7 @@ html{overflow-x:hidden;}
       <li><a href="#why">Why Us</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="mobile.html">Mobile Mechanic</a></li>
+      <li><a href="towing.html">Towing</a></li>
       <li><a href="#warranty">Warranty &amp; Insurance</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>

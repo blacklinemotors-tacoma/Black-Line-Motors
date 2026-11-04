@@ -17,7 +17,7 @@
 <link rel="canonical" href="https://blacklinemotors.us/mobile"/>
 <meta property="og:title" content="Car Won't Start? We Come to You | Black Line Mobile Mechanic"/>
 <meta property="og:description" content="Mobile auto repair at your home, work or roadside. Upfront pricing. Backed by a real shop and towing. Federal Way &amp; surrounding areas."/>
-<meta property="og:image" content="https://blacklinemotors.us/logo-square.png"/>
+<meta property="og:image" content="https://blacklinemotors.us/m-van.webp"/>
 <meta property="og:url" content="https://blacklinemotors.us/mobile"/>
 <meta name="theme-color" content="#000000"/>
 <link rel="preload" href="logo.webp" as="image" type="image/webp"/>
@@ -278,6 +278,45 @@ nav#topnav.scrolled .tn-items{opacity:1;transform:scaleX(1);pointer-events:auto;
   <span class="marquee-item">We Come to You<span class="marquee-dot">&#9670;</span></span>
 </div></div>
 
+<!--BL:GALLERY-->
+<section id="gallery" style="padding-bottom:40px;">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Real Jobs. Real Places.</p>
+      <h2 class="section-title">This Is Us at Work</h2>
+      <div class="divider"></div>
+      <p style="color:#bbb;font-size:18px;max-width:640px;margin-top:6px;">Driveways, parking lots, roadside, day or night. These are real photos of our mobile mechanic jobs.</p>
+    </div>
+    <figure class="mg-side reveal"><img src="m-van-side.webp" alt="Black Line Mobile Mechanic van" width="694" height="289" loading="lazy" decoding="async"/><figcaption>Look for this van &middot; Mobile Mechanic / Auto Repair Shop</figcaption></figure>
+    <div class="mg-grid">
+      <figure class="mg-tile reveal mg-big" onclick="mgOpen(this)"><img src="m-van.webp" alt="Black Line Mobile Mechanic: Our Van Comes to You" width="800" height="1076" loading="lazy" decoding="async"/><figcaption><b>Our Van Comes to You</b><span>Fully equipped shop on wheels</span></figcaption></figure>
+      <figure class="mg-tile reveal" onclick="mgOpen(this)"><img src="m-diagnostics.webp" alt="Black Line Mobile Mechanic: Diagnostics On Site" width="800" height="1013" loading="lazy" decoding="async"/><figcaption><b>Diagnostics On Site</b><span>Pro scan tool, right in your driveway</span></figcaption></figure>
+      <figure class="mg-tile reveal" onclick="mgOpen(this)"><img src="m-roadside-night.webp" alt="Black Line Mobile Mechanic: Late-Night Roadside" width="800" height="1076" loading="lazy" decoding="async"/><figcaption><b>Late-Night Roadside</b><span>Stuck after dark? We still show up</span></figcaption></figure>
+      <figure class="mg-tile reveal" onclick="mgOpen(this)"><img src="m-brakes.webp" alt="Black Line Mobile Mechanic: Brakes and Suspension" width="800" height="1321" loading="lazy" decoding="async"/><figcaption><b>Brakes &amp; Suspension</b><span>Done in a parking lot, same day</span></figcaption></figure>
+      <figure class="mg-tile reveal" onclick="mgOpen(this)"><img src="m-at-work.webp" alt="Black Line Mobile Mechanic: At Your Work" width="800" height="1024" loading="lazy" decoding="async"/><figcaption><b>At Your Work</b><span>Your car gets fixed while you work</span></figcaption></figure>
+      <figure class="mg-tile reveal" onclick="mgOpen(this)"><img src="m-van-inside.webp" alt="Black Line Mobile Mechanic: Tools On Board" width="800" height="792" loading="lazy" decoding="async"/><figcaption><b>Tools On Board</b><span>Jacks, scanners &amp; parts in the van</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<div id="mg-box" onclick="this.classList.remove('on')"><img alt=""/></div>
+<style>
+.mg-side{margin:30px 0 0;border:1px solid #222;background:#0b0b0b;max-width:820px;}.mg-side img{width:100%;height:auto;display:block;}.mg-side figcaption{padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:15px;color:#ddd;border-left:3px solid #cc1f1f;}
+.mg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px;}
+.mg-tile{position:relative;margin:0;overflow:hidden;border:1px solid #222;aspect-ratio:4/5;cursor:zoom-in;background:#0b0b0b;}
+.mg-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1);}
+.mg-tile:hover img{transform:scale(1.05);}
+
+.mg-tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 14px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));}
+.mg-tile figcaption b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:19px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;border-left:3px solid #cc1f1f;padding-left:9px;}
+.mg-tile figcaption span{display:block;color:#ccc;font-size:14px;margin-top:3px;padding-left:12px;}
+#mg-box{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:none;align-items:center;justify-content:center;padding:16px;cursor:zoom-out;}
+#mg-box.on{display:flex;}
+#mg-box img{max-width:100%;max-height:100%;border:1px solid #333;}
+@media(max-width:700px){.mg-grid{grid-template-columns:1fr 1fr;gap:8px;}.mg-big{grid-column:1/-1;aspect-ratio:4/4.2;}.mg-tile:last-child{grid-column:1/-1;aspect-ratio:4/3.4;}.mg-tile:last-child figcaption span{display:block;}.mg-tile figcaption{padding:34px 10px 10px;}.mg-tile figcaption b{font-size:15px;letter-spacing:1px;padding-left:7px;}.mg-tile figcaption span{display:none;}.mg-big figcaption span{display:block;}}
+</style>
+<script>function mgOpen(f){var b=document.getElementById('mg-box');b.querySelector('img').src=f.querySelector('img').src;b.classList.add('on');}</script>
+<!--/BL:GALLERY-->
+
 <!-- PAIN -->
 <section>
   <div class="container">
@@ -341,7 +380,7 @@ nav#topnav.scrolled .tn-items{opacity:1;transform:scaleX(1);pointer-events:auto;
       <p class="lead">Most mobile mechanics leave you stuck when the job is too big for the driveway. We don't.</p>
       <div class="grid">
         <div class="rbox"><h3>&#128295; Our Own Auto Repair Shop</h3><p>Engine, transmission and big repairs go to <a href="index.html">Black Line Motors</a> at 1002 E F St, Ste C, Tacoma. Two lifts, full diagnostic equipment, same team.</p></div>
-        <div class="rbox"><h3>&#128663; Towing to Our Shop</h3><p>If it can't be fixed on site, we tow it straight to our shop. One call, one team, start to finish.</p></div>
+        <div class="rbox"><h3>&#128663; Towing to Our Shop</h3><p>If it can't be fixed on site, we tow it straight to our shop. One call, one team, start to finish. <a href="towing.html">About towing</a></p></div>
       </div>
     </div>
   </div>
